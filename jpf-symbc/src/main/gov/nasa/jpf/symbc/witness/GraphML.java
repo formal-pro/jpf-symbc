@@ -64,8 +64,8 @@ public class GraphML{
                 witnessBuilder.append(Node.serializeAllNodes(nodeList));
                 witnessBuilder.append(Edge.serializeAllEdges(edgeList));
 
-                witnessBuilder.append(System.lineSeparator() + "  </graph>" + System.lineSeparator());
-                witnessBuilder.append("</graphml>" + System.lineSeparator());
+                witnessBuilder.append(System.lineSeparator()).append("  </graph>").append(System.lineSeparator());
+                witnessBuilder.append("</graphml>").append(System.lineSeparator());
                 writer.write(witnessBuilder.toString());
             }catch (IOException e){
                 System.out.println("IOException detected: " + e.getMessage());
@@ -86,8 +86,8 @@ public class GraphML{
                 emptyWitnessBuilder.append(header);
                 emptyWitnessBuilder.append(node);
 
-                emptyWitnessBuilder.append(System.lineSeparator() + "  </graph>" + System.lineSeparator());
-                emptyWitnessBuilder.append("</graphml>" + System.lineSeparator());
+                emptyWitnessBuilder.append(System.lineSeparator()).append("  </graph>").append(System.lineSeparator());
+                emptyWitnessBuilder.append("</graphml>").append(System.lineSeparator());
                 writer.write(emptyWitnessBuilder.toString());
             }catch (IOException e){
                 System.out.println("IOException detected: " + e.getMessage());
