@@ -70,7 +70,7 @@ public class Edge{
         }
 
         else if(symbolicVariableInfoList.get(indexOfEdge).returnType.equals("boolean")){
-            if(symbolicVariableInfoList.get(indexOfEdge).varValue == null) edgeBuilder.append(String.format("         <data key=\"assumption\">%s == %b</data>\n", symbolicVariableInfoList.get(indexOfEdge).varName, false));
+            if(symbolicVariableInfoList.get(indexOfEdge).varValue == null) edgeBuilder.append(String.format("         <data key=\"assumption\">%s == %b</data>\n", symbolicVariableInfoList.get(indexOfEdge).varName, true));
             else edgeBuilder.append(String.format("         <data key=\"assumption\">%s == %b</data>\n", symbolicVariableInfoList.get(indexOfEdge).varName, symbolicVariableInfoList.get(indexOfEdge).varValue));
         }
 
