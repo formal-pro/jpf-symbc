@@ -12,9 +12,18 @@ import java.util.List;
 
 
 public class Node{
+    /**
+     * Denotes the number of node in violation witness.
+     */
     public int numberOfNode;
-
+    /**
+     * Denotes the index of the node(starts with 0).
+     * For example, if node id is n0, index would be 0.
+     */
     public int indexOfNode;
+    /**
+     * A flag that shows whether the counterexample exists or not.
+     */
     public boolean noCounterExample;
 
     public Node(int numberOfNode, int indexOfNode, boolean noCounterExample){
