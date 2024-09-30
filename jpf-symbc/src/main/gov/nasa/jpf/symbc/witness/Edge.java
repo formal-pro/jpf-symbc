@@ -16,13 +16,27 @@ import java.util.List;
 
 
 public class Edge{
+    /**
+     * Denotes an index of node. For example, if source node is n0 and target node is n1, index of node will be 0.
+     */
     public int indexOfEdge;
+    /**
+     * Denotes a name of file and a value of "originfile" in violation witness.
+     * For example, if you are running Main.java, filename will be "Main.java".
+     */
     public String fileName;
-
+    /**
+     * A list that contains information of symbolic variables such as value of symbolic variable or line number.
+     */
     public List<SymbolicVariableInfo> symbolicVariableInfoList;
-
+    /**
+     * Denotes a value of "assumption.scope" in violation witness.
+     */
     public String assumptionScope;
-
+    /**
+     * A flag to check allow method invocation in assumption.
+     * For example, if we want to express string value with equals() method, this flag should be true
+     */
     public boolean allowMethodInvocation;
 
     public Edge(int indexOfEdge, String fileName, List<SymbolicVariableInfo> symbolicVariableInfoList, boolean allowMethodInvocation, String assumptionScope){
@@ -72,7 +86,9 @@ public class Edge{
         }
 
         else{
-            // Use == to follow standard graphml format
+            // Here, the type of symbolic variable should be integer or char.
+            assert(symbolicVariableInfoList.get(indexOfEdge).returnType.equals("int") ||
+                    symbolicVariableInfoList.get(indexOfEdge).returnType.equals("char"));
             if(symbolicVariableInfoList.get(indexOfEdge).varValue == null) edgeBuilder.append(String.format("         <data key=\"assumption\">%s == %d</data>\n", symbolicVariableInfoList.get(indexOfEdge).varName, 4));
             else edgeBuilder.append(String.format("         <data key=\"assumption\">%s == %d</data>\n", symbolicVariableInfoList.get(indexOfEdge).varName, symbolicVariableInfoList.get(indexOfEdge).varValue));
         }
