@@ -63,7 +63,7 @@ echo "symbolic.arrays=true" >> $DIR/config.jpf
 echo "listener = .symbc.SymbolicListener" >> $DIR/config.jpf
 
 # run SPF
-export DYLD_LIBRARY_PATH=`pwd`/jpf-symbc/lib:$DYLD_LIBRARY_PATH
+export LD_LIBRARY_PATH=`pwd`/jpf-symbc/lib:$LD_LIBRARY_PATH
 #jpf-core/bin/jpf $DIR/config.jpf
 if test -z "$JVM_FLAGS"; then
   JVM_FLAGS="-Xmx1024m -ea"
