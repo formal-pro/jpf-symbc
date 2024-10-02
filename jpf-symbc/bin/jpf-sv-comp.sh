@@ -46,7 +46,7 @@ trap "rm -rf $DIR" EXIT
 mkdir -p $DIR/target/classes
 
 # build src files from benchmark
-/Library/Java/JavaVirtualMachines/zulu-8.jdk/Contents/Home/bin/javac -g -cp $DIR/target/classes:../wit4java/sv-benchmarks/java/common:../wit4java/sv-benchmarks/java/securibench/micro:../wit4java/sv-benchmarks/java/java-ranger-regression/infusion/impl -d $DIR/target/classes "${BM[@]}"
+/usr/lib/jvm/java-8-openjdk-amd64/bin/javac -g -cp $DIR/target/classes:../wit4java/sv-benchmarks/java/common:../wit4java/sv-benchmarks/java/securibench/micro:../wit4java/sv-benchmarks/java/java-ranger-regression/infusion/impl -d $DIR/target/classes "${BM[@]}"
 
 # create configuration file
 echo "target=Main" > $DIR/config.jpf
@@ -63,12 +63,12 @@ echo "symbolic.arrays=true" >> $DIR/config.jpf
 echo "listener = .symbc.SymbolicListener" >> $DIR/config.jpf
 
 # run SPF
-export LD_LIBRARY_PATH=`pwd`/jpf-symbc/lib:$LD_LIBRARY_PATH
+export DYLD_LIBRARY_PATH=`pwd`/jpf-symbc/lib:$DYLD_LIBRARY_PATH
 #jpf-core/bin/jpf $DIR/config.jpf
 if test -z "$JVM_FLAGS"; then
   JVM_FLAGS="-Xmx1024m -ea"
 fi
-timeout 900 /Library/Java/JavaVirtualMachines/zulu-8.jdk/Contents/Home/bin/java $JVM_FLAGS -jar `pwd`/jpf-core/build/RunJPF.jar $DIR/config.jpf | tee $LOG
+timeout 900 /usr/lib/jvm/java-8-openjdk-amd64/bin/java $JVM_FLAGS -jar `pwd`/jpf-core/build/RunJPF.jar $DIR/config.jpf | tee $LOG
 
 if [ $? -eq 124 ]; then
   echo "UNKNOWN"
