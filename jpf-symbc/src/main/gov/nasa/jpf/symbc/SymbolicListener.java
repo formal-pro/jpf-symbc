@@ -108,7 +108,11 @@ public class SymbolicListener extends PropertyListenerAdapter implements Publish
     public List<SymbolicVariableInfo> symbolicVariableInfoList = new ArrayList<>();
 
     boolean allowMethodInvocation = false;
-
+    // A flag to check whether the information of symbolic variable is already parsed or not.
+    boolean interceptSymbolic = false;
+    boolean witnessAssumptionScopeIsFilled = false;
+    String fileName = "";
+    String assumptionScope = "";
 
 
     @Override
@@ -209,8 +213,8 @@ public class SymbolicListener extends PropertyListenerAdapter implements Publish
     /**
      * It parses classname and filename to fill the value of assumption.scope at violation witness
      * Both classname and filename are needed to construct the edge of the witness
-     * @param assumptionScope is a value of assumption.scope attribute of violation witness
-     * @param fileName is a value of originfile attribute of violation witness
+     * assumptionScope is a value of assumption.scope attribute of violation witness
+     * fileName is a value of originfile attribute of violation witness
      */
     public void parseAssumptionScope(ThreadInfo ti){
         ApplicationContext app = ti.getApplicationContext();
@@ -220,10 +224,6 @@ public class SymbolicListener extends PropertyListenerAdapter implements Publish
         assumptionScope = String.join(".", parts);
     }
 
-    boolean interceptSymbolic = false;
-    boolean fileNameParsed = false;
-    String fileName = "";
-    String assumptionScope = "";
 
 
     // Temporary object to save the information of symbolic variable
@@ -231,7 +231,7 @@ public class SymbolicListener extends PropertyListenerAdapter implements Publish
 
     /**
      * Method that extracts line number and type of symbolic variables
-     * @param md JVMInvokeInstruction object
+     * @param md JVMInvokeInstruction objectcod
      */
     public void extractSymbolicVariableInfo(JVMInvokeInstruction md){
         symbolicVariableInfo.lineNumber = md.getLineNumber();
@@ -249,9 +249,9 @@ public class SymbolicListener extends PropertyListenerAdapter implements Publish
             String strInsn = executedInstruction.toString();
 
 
-            if(!fileNameParsed){
+            if(!witnessAssumptionScopeIsFilled){
                 parseAssumptionScope(ti);
-                fileNameParsed = true;
+                witnessAssumptionScopeIsFilled = true;
             }
             if (insn instanceof JVMInvokeInstruction) {
                 JVMInvokeInstruction md = (JVMInvokeInstruction) insn;
@@ -358,7 +358,7 @@ public class SymbolicListener extends PropertyListenerAdapter implements Publish
                         symbolicVariableInfo.varName = symbolicVar.toString();
                         symbolicVariableInfoList.add(symbolicVariableInfo);
 
-                        // Initialize interceptSymbolic
+                        // Resetting interceptSymbolic
                         interceptSymbolic = false;
                     }
 
