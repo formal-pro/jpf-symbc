@@ -231,7 +231,7 @@ public class SymbolicListener extends PropertyListenerAdapter implements Publish
 
     /**
      * Method that extracts line number and type of symbolic variables
-     * @param md JVMInvokeInstruction objectcod
+     * @param md JVMInvokeInstruction object
      */
     public void extractSymbolicVariableInfo(JVMInvokeInstruction md){
         symbolicVariableInfo.lineNumber = md.getLineNumber();
