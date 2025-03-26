@@ -5,6 +5,11 @@ This JPF extension provides symbolic execution for Java bytecode. It performs a 
 
 <br>
 
+## IMPORTANT Disclaimer
+<div style="border: 2px solid #ccc; padding: 10px; margin: 10px 0;">
+  <h3>This branch is under active development to support Java 11 in SPF. It is experimental and may contain unstable features. Use it at your own risk.</h3>
+</div>
+
 ## General Information about SPF
 All the latest developments, changes, documentation can be found on our
 [wiki](https://github.com/SymbolicPathFinder/jpf-symbc/wiki) page.
@@ -12,7 +17,7 @@ All the latest developments, changes, documentation can be found on our
 <br>
 
 ## Directory Structure of SPF
-**The current directory structure is as follow.**
+**The current directory structure is as follows.**
 
 ```{bash}
      SPF (Gradle Root Project)
