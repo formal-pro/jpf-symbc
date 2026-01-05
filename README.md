@@ -1093,7 +1093,7 @@ This Dockerfile provides a standardized, cross-platform development environment 
    ```
 
 
-### 2. Mounting the workspace and uunning the image
+### 2. Mounting the workspace and running the image
 
    ```bash
    docker run -it --name spf-active -v "$PWD:/workspace" spf-dev
