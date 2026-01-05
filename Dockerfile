@@ -25,10 +25,11 @@ RUN echo "jpf-core = /app/jpf-core" > /root/.jpf/site.properties && \
 
 COPY . .
 
-RUN echo 'alias jpf-build="cd /app/jpf-core && ./gradlew build -x test && cd /app/jpf-symbc && ./gradlew build -x test"' >> /root/.bashrc
-RUN echo 'alias jpf-run="java -Xmx1024m -ea -Djava.library.path=/app/jpf-symbc/lib -jar /app/jpf-core/build/RunJPF.jar"' >> /root/.bashrc
-RUN echo 'alias jpf-sv="bash /app/jpf-symbc/bin/jpf-sv-comp.sh"' >> /root/.bashrc
+RUN echo 'alias spf-build="cd /app/jpf-core && ./gradlew build -x test && cd /app/jpf-symbc && ./gradlew build -x test"' >> /root/.bashrc
+RUN echo 'alias spf-run="java -Xmx1024m -ea -Djava.library.path=/app/jpf-symbc/lib -jar /app/jpf-core/build/RunJPF.jar"' >> /root/.bashrc
+RUN echo 'alias spf-sv="bash /app/jpf-symbc/bin/jpf-sv-comp.sh"' >> /root/.bashrc
 
+# Convert Windows CRLF line endings to Unix LF to avoid execution issues
 RUN chmod +x /app/jpf-symbc/bin/jpf-sv-comp.sh && \
     dos2unix /app/jpf-symbc/bin/jpf-sv-comp.sh
 
