@@ -1093,17 +1093,14 @@ This Dockerfile provides a standardized, cross-platform development environment 
    ```
 
 
-### 2. Running with Volume Mounting (Recommended)
-To avoid manually copying changes from IntelliJ/Eclipse to the container, use Volume Mounting. This links your local source code directly into the container so that your IDE changes are reflected instantly.
+### 2. Mounting the workspace and uunning the image
+
    ```bash
-   docker run -it --name spf-active \
-    -v "$(pwd):/app/jpf-symbc" \
-    -v "/path/to/jpf-core:/app/jpf-core" \
-    spf-dev
+   docker run -it --name spf-active -v "$PWD:/workspace" spf-dev
    ```
-### 3. Usage Inside the Container
-1. spf-build: Compiles both jpf-core and jpf-symbc
-2. spf-run: Runs a standard JPF execution
-3. spf-sv: Executes the SV-COMP script (jpf-sv-comp.sh).
+### 3. Building SPF
+
+1. ./gradlew :jpf-core:buildJars
+2. ./gradlew :jpf-symbc:buildJars
 
 </details>
