@@ -1089,7 +1089,7 @@ This Dockerfile provides a standardized, cross-platform development environment 
 2. Navigate to your `jpf-symbc` directory (where the `Dockerfile` is located).
 3. Build the image:
    ```bash
-   docker build -t spf-dev
+   docker build -t spf-dev .
    ```
 
 
